@@ -1,0 +1,21 @@
+query GetProductByName(
+    $productName: String!
+  ) {
+    getProductByName(productName: $productName) {
+      _id
+      userId
+      ibmDiscoveryDocumentId
+      status
+      archived
+      name
+      description
+      values {
+        label
+        value
+      }
+      features {
+        label
+        value
+      }
+    }
+  }
