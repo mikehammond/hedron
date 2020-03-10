@@ -1,14 +1,16 @@
 <template>
   <v-app id="sandbox" class="app">
-    <v-app-bar fixed app style="background: rgb(35,117,134)">
+    <v-app-bar fixed app flat style="background: linear-gradient(90deg, rgb(35, 117, 134) 13%, rgb(36, 132, 152) 46%, rgb(93, 188, 210) 91%);">
       <v-toolbar-title style="color: #ffffff;" to="/">Hedron</v-toolbar-title>
       <v-spacer />
-      <router-link style="color: #ffffff;" to="/browse">Browse</router-link>
-      <v-spacer />
-      <NuxtLink style="color: #ffffff;" to="/submit">Submit Product</NuxtLink>
-      <v-spacer />
-      <NuxtLink style="color: #ffffff;" to="/product">Product</NuxtLink>
-      <v-spacer />
+      <div style="display: flex; width: 40%; justify-content: space-between; ">
+        <router-link style="color: #ffffff; text-decoration: none;" to="/browse">Browse</router-link>
+        <v-spacer />
+        <NuxtLink style="color: #ffffff; text-decoration: none;" to="/submit">Submit Product</NuxtLink>
+        <v-spacer />
+        <NuxtLink style="color: #ffffff; text-decoration: none;" to="/_name">Product</NuxtLink>
+        <v-spacer />
+      </div>
     </v-app-bar>
     <v-content style="margin: 0;
     padding: 0; box-sizing: border-box; display: flex;" fluid>
@@ -16,33 +18,36 @@
       padding: 0; box-sizing: border-box; display: flex;" fluid>
         <router-view></router-view>
       </v-container>
-      <section app style="background: rgb(35,117,134); color: white;">
-        <v-row cols="12" style="display: flex;" fluid>
+      <section app style="background: #CECECE;">
+        <v-row cols="12" style="display: flex; padding-top: 3%;" fluid>
           <v-col cols="4" style="width: 33%;">
-            <h2>About Deelify</h2>
-            <p>Are you obsessed with increasing your business size? Deelify helps you find the right SaaS products to boost your productivity so that you keep focusing on increasing revenue</p>
-          </v-col>
-          <v-col cols="4" style="width: 33%; background: rgb(35,117,134); color: white;">
-            <v-list style="background: rgb(35,117,134); color: white;">
-              <v-list-title>More</v-list-title>
-              <v-list-items style="background: rgb(35,117,134); color: white;">
-                <v-list-item style="background: rgb(35,117,134); color: white;">Affiliate Program</v-list-item>
-                <v-list-item>Support Community</v-list-item>
-                <v-list-item>Integrations</v-list-item>
-                <v-list-item>Reseller Program</v-list-item>
-              </v-list-items>
-            </v-list>
+            <div style="margin-left: 5%;">
+              <h2>About Deelify</h2>
+              <p style="color: black;">Are you obsessed with increasing your business size? Deelify helps you find the right SaaS products to boost your productivity so that you keep focusing on increasing revenue</p>
+            </div>
           </v-col>
           <v-col cols="4" style="width: 33%;">
-            <div>Recent Posts</div>
-            <v-list-items>
-              <v-list-item>How to know if a product is the right one for you</v-list-item>
-              <v-list-item>Get protected from phishing</v-list-item>
-              <v-list-item>Secure your password</v-list-item>
-              <v-list-item>Top 10 Marketing Products of the Month</v-list-item>
-            </v-list-items>
+            <div>
+              <h3>More</h3>
+              <ul>
+                <li>Affiliate Program</li>
+                <li>Support Community</li>
+                <li>Integrations</li>
+                <li>Reseller Program</li>
+              </ul>
+            </div>
           </v-col>
-        </v-row><br>
+          <v-col cols="4" style="width: 33%;">
+            <h3>Recent Posts</h3>
+            <ul>
+              <li>How to know if a product is the right one for you</li>
+              <li>Get protected from phishing</li>
+              <li>Secure your password</li>
+              <li>Top 10 Marketing Products of the Month</li>
+            </ul>
+          </v-col>
+        </v-row>
+        <div style="text-align: center; padding-bottom: 2%;"><span>&copy; {{ new Date().getFullYear() }} Deegify. All Right Reserved.</span></div>
       </section>
     </v-content>
     <v-navigation-drawer v-model="rightDrawer" :right="right" temporary fixed>
@@ -57,9 +62,14 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-row><span>&copy; {{ new Date().getFullYear() }} Deegify. All Right Reserved.</span></v-row>
   </v-app>
 </template>
+
+<style>
+  h4 {
+    color: white;
+  }
+</style>
 
 <script>
 export default {
