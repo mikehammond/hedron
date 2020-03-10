@@ -1,0 +1,15 @@
+query SearchProducts(
+    $query: String!
+  ) {
+    searchProducts(
+      searchQueryInput: {
+        query: $query
+      }
+    ) {
+      name
+      description
+      featured {
+        url
+      }
+    }
+  }

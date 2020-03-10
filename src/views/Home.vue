@@ -1,18 +1,30 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <h1>This is an Home page</h1>
+    <ul>
+      <li
+        v-for="product in searchProducts"
+        :key="product.name"
+      >
+        {{ product.name }}
+      </li>
+    </ul>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import SearchProducts from '../graphql/SearchProducts.gql';
 
 export default {
-  name: 'Home',
-  components: {
-    HelloWorld
-  }
+  apollo: {
+    searchProducts: {
+      // gql query
+      query: SearchProducts,
+      // Static parameters
+      variables: {
+        query: 'asdsdsad',
+      },
+    },
+  },
 }
 </script>
