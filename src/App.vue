@@ -18,18 +18,18 @@
       padding: 0; box-sizing: border-box; display: flex;" fluid>
         <router-view></router-view>
       </v-container>
-      <section app style="background: #CECECE;">
-        <v-row cols="12" style="display: flex; padding-top: 3%;" fluid>
+      <section app style="background: #fff;">
+        <v-row cols="12" style="display: flex; padding-top: 3.5%;" fluid>
           <v-col cols="4" style="width: 33%;">
             <div style="margin-left: 5%;">
               <h2>About Deelify</h2>
-              <p style="color: black;">Are you obsessed with increasing your business size? Deelify helps you find the right SaaS products to boost your productivity so that you keep focusing on increasing revenue</p>
+              <p style="color: rgba(10, 10, 10, 0.5);">Are you obsessed with increasing your business size? Deelify helps you find the right SaaS products to boost your productivity so that you keep focusing on increasing revenue</p>
             </div>
           </v-col>
           <v-col cols="4" style="width: 33%;">
             <div>
               <h3>More</h3>
-              <ul>
+              <ul style="color: rgba(10, 10, 10, 0.5);">
                 <li>Affiliate Program</li>
                 <li>Support Community</li>
                 <li>Integrations</li>
@@ -39,7 +39,7 @@
           </v-col>
           <v-col cols="4" style="width: 33%;">
             <h3>Recent Posts</h3>
-            <ul>
+            <ul style="color: rgba(10, 10, 10, 0.5);">
               <li>How to know if a product is the right one for you</li>
               <li>Get protected from phishing</li>
               <li>Secure your password</li>
@@ -47,7 +47,7 @@
             </ul>
           </v-col>
         </v-row>
-        <div style="text-align: center; padding-bottom: 2%;"><span>&copy; {{ new Date().getFullYear() }} Deegify. All Right Reserved.</span></div>
+        <div style="text-align: center; padding-bottom: 2%;"><span>&copy; {{ new Date().getFullYear() }} hedron. All Right Reserved.</span></div>
       </section>
     </v-content>
     <v-navigation-drawer v-model="rightDrawer" :right="right" temporary fixed>
