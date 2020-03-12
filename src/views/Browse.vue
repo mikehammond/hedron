@@ -138,11 +138,6 @@ export default {
   apollo: {
     searchProducts: {
       query: SEARCH_PRODUCTS,
-      variables () {
-        return {
-          query: "asdsdsad"
-        }
-      }
     }
   },
 

@@ -1,5 +1,5 @@
 query SearchProducts(
-    $query: String!
+    $query: String
   ) {
     searchProducts(
       searchQueryInput: {
