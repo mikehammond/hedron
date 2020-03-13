@@ -292,38 +292,40 @@
             <v-container>
               <v-row>
                 <v-col cols="12" sm="6" md="4">
-                  <v-text-field label="First Name*" required></v-text-field>
+                  <v-text-field v-model="firstName" label="First Name*" required></v-text-field>
                 </v-col>
                 <v-col cols="12" sm="6" md="4">
                   <v-text-field
                     label="Last Name*"
                     persistent-hint
                     required
+                    v-model="lastName"
                   ></v-text-field>
                 </v-col>
                 <v-col cols="12" sm="6" md="6">
-                  <v-text-field label="Email*" required></v-text-field>
+                  <v-text-field v-model="email" label="Email*" required></v-text-field>
                 </v-col>
                 <v-col cols="12" sm="6" md="6">
-                  <v-text-field label="Phone Number*" required></v-text-field>
+                  <v-text-field v-model="phoneNumber" label="Phone Number*" required></v-text-field>
                 </v-col>
                 <v-col cols="12" sm="6" md="6">
-                  <v-text-field label="Company*" required></v-text-field>
+                  <v-text-field v-model="company" label="Company*" required></v-text-field>
                 </v-col>
                 <v-col cols="12" sm="6" md="6">
-                  <v-text-field label="Your Position*" hint="Eg. Marketing Manager" required></v-text-field>
+                  <v-text-field v-model="position" label="Your Position*" hint="Eg. Marketing Manager" required></v-text-field>
                 </v-col>
                 <v-col cols="12" sm="6" md="6">
-                  <v-text-field label="Link to website"></v-text-field>
+                  <v-text-field v-model="website" label="Link to website"></v-text-field>
                 </v-col>
                 <v-col cols="12" sm="6" md="6">
                   <v-select
                     :items="['5 - 15', '16 - 30', '31 - 55', '56+']"
                     label="Number of Employees*"
                     required
+                    v-model="numberOfEmployees"
                   ></v-select>
                   <v-col cols="12">
-                    <v-text-field label="Message"></v-text-field>
+                    <v-text-field v-model="message" label="Message"></v-text-field>
                   </v-col>
                 </v-col>
                 <!-- <v-col cols="12" sm="6">
@@ -340,7 +342,7 @@
           <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn color="blue darken-1" text @click="dialog = false">Close</v-btn>
-            <v-btn color="blue darken-1" text @click="dialog = false">Save</v-btn>
+            <v-btn color="blue darken-1" text @click="makeDemoRequest">Submit</v-btn>
           </v-card-actions>
         </v-card>
       </v-dialog>
@@ -350,14 +352,12 @@
 
 <script>
   import GET_PRODUCT_BY_NAME from "../graphql/GetProductByName.gql";
+  import MAKE_DEMO_REQUEST from "../graphql/MakeDemoRequest.gql";
 
   export default {
-    data: () => ({
-      dialog: false,
-    }),
-
     data () {
       return {
+        dialog: false,
         tab: null,
         text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
         icons: false,
@@ -366,6 +366,44 @@
         prevIcon: false,
         nextIcon: false,
         tabs: 4,
+        firstName: '',
+        lastName: '',
+        email: '',
+        phoneNumber: '',
+        company: '',
+        position: '',
+        website: '',
+        numberOfEmployees: '',
+        message: '',
+      }
+    },
+
+    methods: {
+      makeDemoRequest() {
+        const { firstName, lastName, email, phoneNumber, company,
+        position, website, numberOfEmployees, message } = this;
+
+        this.$apollo.mutate({
+          mutation: MAKE_DEMO_REQUEST,
+          variables: {
+            demo: {
+              sender: `${firstName} ${lastName}`,
+              receiver: this.getProductByName.userId,
+              productId: this.getProductByName._id,
+              firstName,
+              lastName,
+              email,
+              phoneNumber,
+              company,
+              position,
+              website,
+              numberOfEmployees,
+              message
+            }
+          }
+        });
+
+        this.dialog = false;
       }
     },
 

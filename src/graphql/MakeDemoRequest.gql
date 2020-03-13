@@ -1,0 +1,9 @@
+mutation RequestDemo(
+  $demo: DemoRequestInput!
+) {
+  requestDemo(
+    demo: $demo
+  ) {
+    _id
+  }
+}

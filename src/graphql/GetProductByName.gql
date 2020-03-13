@@ -20,7 +20,10 @@ query GetProductByName(
       plans {
         name
         price
-        description
+        features {
+          label
+          value
+        }
       }
       featured {
         url
