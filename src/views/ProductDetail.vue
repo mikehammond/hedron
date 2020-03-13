@@ -3,7 +3,7 @@
     <v-row>
       <div style="font-size: 24px; text-align: left; margin: 4% 0 0 4%; color: rgb(35,117,134)">
         <h1><strong>{{ getProductByName.name }}</strong></h1>
-        <h5>{{ getProductByName.description }}</h5>
+        <h5>{{ getProductByName.name }}</h5>
       </div>
       <v-container style="display: flex; flex-wrap: wrap; justify-content: space-between; width: 100%; margin-top: 4%; height: auto;" fluid>
         <!-- Main Content -->
