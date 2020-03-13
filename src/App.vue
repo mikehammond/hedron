@@ -22,7 +22,7 @@
         <v-row cols="12" style="display: flex; padding-top: 3.5%;" fluid>
           <v-col cols="4" style="width: 33%;">
             <div style="margin-left: 5%;">
-              <h2>About Deelify</h2>
+              <h2>About Hedron</h2>
               <p style="color: rgba(10, 10, 10, 0.5);">Are you obsessed with increasing your business size? Deelify helps you find the right SaaS products to boost your productivity so that you keep focusing on increasing revenue</p>
             </div>
           </v-col>

@@ -10,7 +10,7 @@
         <v-col cols="7" id="mainBar" style="display: flex; flex-wrap: wrap; margin-left: 3%;">
           <div style="width: 99%;" contain>
             <v-card style="border-radius: 20px;">
-              <img :src="getProductByName.featured.url" style="padding: 0% 0% 0% 3%; margin: auto; width: 90%;" contain/>
+              <img :src="getProductByName.featured.url" style="padding: 0% 0% 0% 3%; margin: auto; min-width: 100%; max-width: 100%;" contain/>
             </v-card>
           </div>
           <div style="width: 99%; margin-top: 2%;"><br>
