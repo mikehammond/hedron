@@ -17,5 +17,10 @@ query GetProductByName(
         label
         value
       }
+      plans {
+        name
+        price
+        description
+      }
     }
   }

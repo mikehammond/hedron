@@ -92,26 +92,34 @@
                     :next-icon="nextIcon ? 'mdi-arrow-right-bold-box-outline' : undefined"
                     :icons-and-text="icons"
                   >
-                    <v-tab :href="`#tab-1`">
-                      Free
-                      <v-icon v-if="icons">mdi-phone</v-icon>
-                    </v-tab>
+                      <v-tab
+                        v-for="(plan, index) in getProductByName.plans"
+                        :key="index"
+                        :href="`#tab-${index + 1}`">
+                        {{ plan.name }}
+                        <v-icon v-if="icons">mdi-phone</v-icon>
+                      </v-tab>
 
-                    <v-tab-item :value="'tab-1'">
-                      <v-card flat tile style="text-align: center; margin: auto;"><br>
-                        <div style="color: rgb(35,117,134); height: 80px;"><h1>$0</h1><h4>/month</h4></div><br>
-                        <ul style="list-style-type: none; margin-right: 7%;">
-                          <li>Feature Two</li>
-                          <li>Feature Three</li>
-                          <li>Feature Four</li>
-                          <li>Feature Five</li>
-                          <li>Feature Six</li>
-                        </ul><br>
-                        <v-btn style="background: rgb(35,117,134); color: white;">Sign Up</v-btn><br><br>
-                      </v-card>
-                    </v-tab-item>
+                      <v-tab-item
+                        v-for="(plan, index) in getProductByName.plans"
+                        :key="index"
+                        :value="`tab-${index + 1}`">
+                        <v-card flat tile style="text-align: center; margin: auto;"><br>
+                          <div style="color: rgb(35,117,134); height: 80px;">
+                            <h1>${{plan.price}}</h1><h4>/month</h4>
+                          </div><br>
+                          <ul style="list-style-type: none; margin-right: 7%;">
+                            <li>Feature Two</li>
+                            <li>Feature Three</li>
+                            <li>Feature Four</li>
+                            <li>Feature Five</li>
+                            <li>Feature Six</li>
+                          </ul><br>
+                          <v-btn style="background: rgb(35,117,134); color: white;">Sign Up</v-btn><br><br>
+                        </v-card>
+                      </v-tab-item>
 
-                    <v-tab :href="`#tab-2`">
+                    <!-- <v-tab :href="`#tab-2`">
                       Personal
                       <v-icon v-if="icons">mdi-phone</v-icon>
                     </v-tab>
@@ -177,7 +185,7 @@
                       <v-card flat tile style="text-align: center; margin: auto;"><br>
                         <v-btn style="background: rgb(35,117,134); color: white;">Sign Up</v-btn><br><br>
                       </v-card>
-                    </v-tab-item>
+                    </v-tab-item> -->
                   </v-tabs>
                 </div>
             </v-card>

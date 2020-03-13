@@ -6,7 +6,7 @@
       <div style="display: flex; width: 40%; justify-content: space-between; ">
         <router-link style="color: #ffffff; text-decoration: none;" to="/browse">Browse</router-link>
         <v-spacer />
-        <NuxtLink style="color: #ffffff; text-decoration: none;" to="/submit">Submit Product</NuxtLink>
+        <a style="color: #ffffff; text-decoration: none;" href="https://hedron-dashboard.now.sh/">Submit Product</a>
         <v-spacer />
         <NuxtLink style="color: #ffffff; text-decoration: none;" to="/_name">Product</NuxtLink>
         <v-spacer />
