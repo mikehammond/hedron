@@ -22,5 +22,8 @@ query GetProductByName(
         price
         description
       }
+      featured {
+        url
+      }
     }
   }
