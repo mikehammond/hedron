@@ -50,22 +50,14 @@
           <div style="width: 100%;">
             <v-card style="-webkit-box-shadow: -3px 4px 45px 15px rgba(209,207,209,1); -moz-box-shadow: -3px 4px 45px 15px rgba(209,207,209,1); box-shadow: -3px 4px 45px 15px rgba(209,207,209,1);">
               <v-card-title style="font-size: 22px; background: linear-gradient(90deg, rgba(35,117,134,1) 13%, rgba(36,132,152,1) 46%, rgba(93,188,210,1) 91%); width: 100%; color: white;">Value Proposition</v-card-title>
-              <v-list-item two-line><i class="material-icons" style="margin-right: 5%; color: rgb(35,117,134);">done_outline</i>
+              <v-list-item
+                v-for="value in getProductByName.values"
+                :key="value.name"
+                two-line>
+                <i class="material-icons" style="margin-right: 5%; color: rgb(35,117,134);">done_outline</i>
                 <v-list-item-content>
-                  <v-list-item-title>Value Proposition One</v-list-item-title>
-                  <v-list-item-subtitle>One sentence description of the value</v-list-item-subtitle>
-                </v-list-item-content>
-              </v-list-item>
-              <v-list-item two-line><i class="material-icons" style="margin-right: 5%; color: rgb(35,117,134);">done_outline</i>
-                <v-list-item-content>
-                  <v-list-item-title>Value Proposition One</v-list-item-title>
-                  <v-list-item-subtitle>One sentence description of the value</v-list-item-subtitle>
-                </v-list-item-content>
-              </v-list-item>
-              <v-list-item two-line><i class="material-icons" style="margin-right: 5%; color: rgb(35,117,134);">done_outline</i>
-                <v-list-item-content>
-                  <v-list-item-title>Value Proposition One</v-list-item-title>
-                  <v-list-item-subtitle>One sentence description of the value</v-list-item-subtitle>
+                  <v-list-item-title>{{ value.name }}</v-list-item-title>
+                  <v-list-item-subtitle>{{ value.description }}</v-list-item-subtitle>
                 </v-list-item-content>
               </v-list-item>
             </v-card>
@@ -74,22 +66,13 @@
           <div style="width: 100%; margin-top: 10%;">
             <v-card style="-webkit-box-shadow: -3px 4px 45px 15px rgba(209,207,209,1); -moz-box-shadow: -3px 4px 45px 15px rgba(209,207,209,1); box-shadow: -3px 4px 45px 15px rgba(209,207,209,1);">
               <v-card-title style="font-size: 22px; background: linear-gradient(270deg, rgba(35,117,134,1) 13%, rgba(36,132,152,1) 46%, rgba(93,188,210,1) 91%); width: 100%; color: white;">Features</v-card-title>
-              <v-list-item two-line>
+              <v-list-item
+                v-for="feature in getProductByName.features"
+                :key="feature.name"
+                two-line>
                 <v-list-item-content>
-                  <v-list-item-title>Value Proposition One</v-list-item-title>
-                  <v-list-item-subtitle>One sentence description of the value proposition</v-list-item-subtitle>
-                </v-list-item-content>
-              </v-list-item>
-              <v-list-item two-line>
-                <v-list-item-content>
-                  <v-list-item-title>Value Proposition One</v-list-item-title>
-                  <v-list-item-subtitle>One sentence description of the value proposition</v-list-item-subtitle>
-                </v-list-item-content>
-              </v-list-item>
-              <v-list-item two-line>
-                <v-list-item-content>
-                  <v-list-item-title>Value Proposition One</v-list-item-title>
-                  <v-list-item-subtitle>One sentence description of the value proposition</v-list-item-subtitle>
+                  <v-list-item-title>{{feature.label}}</v-list-item-title>
+                  <!-- <v-list-item-subtitle>One sentence description of the value proposition</v-list-item-subtitle> -->
                 </v-list-item-content>
               </v-list-item>
             </v-card>
