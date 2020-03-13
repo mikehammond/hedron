@@ -118,74 +118,6 @@
                           <v-btn style="background: rgb(35,117,134); color: white;">Sign Up</v-btn><br><br>
                         </v-card>
                       </v-tab-item>
-
-                    <!-- <v-tab :href="`#tab-2`">
-                      Personal
-                      <v-icon v-if="icons">mdi-phone</v-icon>
-                    </v-tab>
-
-                    <v-tab-item :value="'tab-2'">
-                      <v-card flat tile style="text-align: center; margin: auto;"><br>
-                        <div style="color: rgb(35,117,134); height: 80px;"><h1>$5</h1><h4>/month</h4></div><br>
-                        <ul style="list-style-type: none; margin-right: 7%;">
-                          <li>Feature Two</li>
-                          <li>Feature Three</li>
-                          <li>Feature Four</li>
-                          <li>Feature Five</li>
-                          <li>Feature Six</li>
-                        </ul><br>
-                        <v-btn style="background: rgb(35,117,134); color: white;">Sign Up</v-btn><br><br>
-                      </v-card>
-                    </v-tab-item>
-
-                    <v-tab :href="`#tab-3`">
-                      Professional
-                      <v-icon v-if="icons">mdi-phone</v-icon>
-                    </v-tab>
-
-                    <v-tab-item :value="'tab-3'">
-                      <v-card flat tile style="text-align: center; margin: auto;"><br>
-                        <div style="color: rgb(35,117,134); height: 80px;"><h1>$12</h1><h4>/month</h4></div><br>
-                        <ul style="list-style-type: none; margin-right: 7%;">
-                          <li>Feature Two</li>
-                          <li>Feature Three</li>
-                          <li>Feature Four</li>
-                          <li>Feature Five</li>
-                          <li>Feature Six</li>
-                        </ul><br>
-                        <v-btn style="background: rgb(35,117,134); color: white;">Sign Up</v-btn><br><br>
-                      </v-card>
-                    </v-tab-item>
-
-                    <v-tab :href="`#tab-4`">
-                      Business
-                      <v-icon v-if="icons">mdi-phone</v-icon>
-                    </v-tab>
-
-                    <v-tab-item :value="'tab-4'">
-                      <v-card flat tile style="text-align: center; margin: auto;"><br>
-                        <div style="color: rgb(35,117,134); height: 80px;"><h1>$25</h1><h4>/month</h4></div><br>
-                        <ul style="list-style-type: none; margin-right: 7%;">
-                          <li>Feature Two</li>
-                          <li>Feature Three</li>
-                          <li>Feature Four</li>
-                          <li>Feature Five</li>
-                          <li>Feature Six</li>
-                        </ul><br>
-                        <v-btn style="background: rgb(35,117,134); color: white;">Sign Up</v-btn><br><br>
-                      </v-card>
-                    </v-tab-item>
-
-                    <v-tab :href="`#tab-5`">
-                      Enterprise
-                      <v-icon v-if="icons">mdi-phone</v-icon>
-                    </v-tab>
-
-                    <v-tab-item :value="'tab-5'">
-                      <v-card flat tile style="text-align: center; margin: auto;"><br>
-                        <v-btn style="background: rgb(35,117,134); color: white;">Sign Up</v-btn><br><br>
-                      </v-card>
-                    </v-tab-item> -->
                   </v-tabs>
                 </div>
             </v-card>
@@ -346,6 +278,73 @@
         </v-col>
       </v-container>
     </v-row>
+
+    <v-row justify="center">
+      <v-dialog v-model="dialog" persistent max-width="600px">
+        <template v-slot:activator="{ on }">
+          <v-btn color="primary" dark v-on="on">Request Demo</v-btn>
+        </template>
+        <v-card>
+          <v-card-title>
+            <span class="headline">Request for Demo</span>
+          </v-card-title>
+          <v-card-text>
+            <v-container>
+              <v-row>
+                <v-col cols="12" sm="6" md="4">
+                  <v-text-field label="First Name*" required></v-text-field>
+                </v-col>
+                <v-col cols="12" sm="6" md="4">
+                  <v-text-field
+                    label="Last Name*"
+                    persistent-hint
+                    required
+                  ></v-text-field>
+                </v-col>
+                <v-col cols="12" sm="6" md="6">
+                  <v-text-field label="Email*" required></v-text-field>
+                </v-col>
+                <v-col cols="12" sm="6" md="6">
+                  <v-text-field label="Phone Number*" required></v-text-field>
+                </v-col>
+                <v-col cols="12" sm="6" md="6">
+                  <v-text-field label="Company*" required></v-text-field>
+                </v-col>
+                <v-col cols="12" sm="6" md="6">
+                  <v-text-field label="Your Position*" hint="Eg. Marketing Manager" required></v-text-field>
+                </v-col>
+                <v-col cols="12" sm="6" md="6">
+                  <v-text-field label="Link to website"></v-text-field>
+                </v-col>
+                <v-col cols="12" sm="6" md="6">
+                  <v-select
+                    :items="['5 - 15', '16 - 30', '31 - 55', '56+']"
+                    label="Number of Employees*"
+                    required
+                  ></v-select>
+                  <v-col cols="12">
+                    <v-text-field label="Message"></v-text-field>
+                  </v-col>
+                </v-col>
+                <!-- <v-col cols="12" sm="6">
+                  <v-autocomplete
+                    :items="['Skiing', 'Ice hockey', 'Soccer', 'Basketball', 'Hockey', 'Reading', 'Writing', 'Coding', 'Basejump']"
+                    label="Interests"
+                    multiple
+                  ></v-autocomplete>
+                </v-col> -->
+              </v-row>
+            </v-container>
+            <small>*indicates required field</small>
+          </v-card-text>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn color="blue darken-1" text @click="dialog = false">Close</v-btn>
+            <v-btn color="blue darken-1" text @click="dialog = false">Save</v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+    </v-row>
   </v-content>
 </template>
 
@@ -353,6 +352,10 @@
   import GET_PRODUCT_BY_NAME from "../graphql/GetProductByName.gql";
 
   export default {
+    data: () => ({
+      dialog: false,
+    }),
+
     data () {
       return {
         tab: null,

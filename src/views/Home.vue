@@ -3,7 +3,7 @@
     <v-container style="display: flex; flex-wrap: wrap; color: white; background: linear-gradient(90deg, rgb(35, 117, 134) 13%, rgb(36, 132, 152) 46%, rgb(93, 188, 210) 91%);" fluid>
       <v-col cols="5" style="margin-top: 9%; display: flex; flex-wrap: wrap; margin-left: 4%;">
         <h1>Find Software to Boost your Productivity</h1>
-        <h3>Browse hundreds of verified, secure and reliable online softwares that fit your business needs</h3>
+        <h3>Browse hundreds of verified, secure and reliable online software that fit your business needs</h3>
         <v-btn class="btn" style="color: white;">Browse All</v-btn><br><br>
       </v-col>
       <v-col cols="6" style="margin-top: 8%; margin-bottom: 7%; display: flex;">
