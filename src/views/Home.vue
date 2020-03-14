@@ -277,22 +277,22 @@
         </v-card>
       </v-row>
     </v-container><br><br>
-    <container>
+    <v-container>
       <v-row style="display: flex; background: linear-gradient(90deg, rgb(35, 117, 134) 13%, rgb(36, 132, 152) 46%, rgb(93, 188, 210) 91%); justify-content: space-between; padding: 5% 0 5% 0;">
         <div style="margin-left: 7%; margin: auto; color: white;">
           <h2>Want to talk about your specific needs?</h2>
           <p style="color: white;">Leave us your email and we will contact you soon</p>
         </div>
         <div style="margin-right: 7%; width: 45%; margin: auto;">
-          <v-form ref="form" v-model="valid" lazy-validation style="display: flex; background: white; max-width: 90%; align-items: center; border-radius: 30px; margin: auto; height: 100%;">
-            <v-text-field v-model="email" :rules="emailRules" label="E-mail" required style="margin-left: 5%;"></v-text-field>
-            <v-btn :disabled="!valid" @click="validate" style=" width: 30%; border-radius: 30px; margin-right: 4%; color: white; background: linear-gradient(90deg, rgb(35, 117, 134) 13%, rgb(36, 132, 152) 46%, rgb(93, 188, 210) 91%);">
+          <v-form ref="form" lazy-validation style="display: flex; background: white; max-width: 90%; align-items: center; border-radius: 30px; margin: auto; height: 100%;">
+            <v-text-field label="E-mail" required style="margin-left: 5%;"></v-text-field>
+            <v-btn style=" width: 30%; border-radius: 30px; margin-right: 4%; color: white; background: linear-gradient(90deg, rgb(35, 117, 134) 13%, rgb(36, 132, 152) 46%, rgb(93, 188, 210) 91%);">
               Submit
             </v-btn>
           </v-form>
         </div>
       </v-row>
-    </container>
+    </v-container>
   </v-content>
 </template>
 

@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import Chat from 'vue-beautiful-chat';
 import App from './App.vue'
 import './registerServiceWorker'
 import router from './router'
@@ -6,6 +7,7 @@ import vuetify from './plugins/vuetify';
 import { createProvider } from './vue-apollo'
 
 Vue.config.productionTip = false
+Vue.use(Chat);
 
 new Vue({
   router,

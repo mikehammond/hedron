@@ -8,6 +8,7 @@ query GetProductByName(
       status
       archived
       name
+      summary
       description
       values {
         name
@@ -21,6 +22,7 @@ query GetProductByName(
         name
         price
         features {
+          _id
           label
           value
         }
