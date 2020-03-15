@@ -24,6 +24,7 @@
 </template>
 
 <script>
+import ASK_QUESTION from '../graphql/AskQuestion.gql';
 
 import CloseIcon from 'vue-beautiful-chat/src/assets/close-icon.png'
 import OpenIcon from 'vue-beautiful-chat/src/assets/logo-no-bg.svg'
@@ -54,16 +55,13 @@ export default {
       },
       participants: [
         {
-          id: 'user1',
-          name: 'Matteo',
-          imageUrl: 'https://avatars3.githubusercontent.com/u/1915989?s=230&v=4'
+          id: 'hedron',
+          name: 'Hedron Assistant',
+          imageUrl: 'https://www.liberaldictionary.com/wp-content/uploads/2018/12/bot.png'
         },
       ], // the list of all the participant of the conversation. `name` is the user name, `id` is used to establish the author of a message, `imageUrl` is supposed to be the user avatar.
       titleImageUrl: 'https://a.slack-edge.com/66f9/img/avatars-teams/ava_0001-34.png',
-      messageList: [
-          { type: 'text', author: `me`, data: { text: `Say yes!` } },
-          { type: 'text', author: `user1`, data: { text: `No.` } }
-      ], // the list of the messages to show, can be paginated and adjusted dynamically
+      messageList: [], // the list of the messages to show, can be paginated and adjusted dynamically
       newMessagesCount: 0,
       isChatOpen: false, // to determine whether the chat window should be open or closed
       showTypingIndicator: '', // when set to a value matching the participant.id it shows the typing indicator for the specific user
@@ -96,15 +94,32 @@ export default {
     }
   },
   methods: {
-    sendMessage (text) {
-      if (text.length > 0) {
-        this.newMessagesCount = this.isChatOpen ? this.newMessagesCount : this.newMessagesCount + 1
-        this.onMessageWasSent({ author: 'support', type: 'text', data: { text } })
+    sendMessage (message) {
+      if (message) {
+        this.newMessagesCount = this.isChatOpen ? this.newMessagesCount : this.newMessagesCount + 1;
+        this.messageList = [ ...this.messageList, message ];
+
+        this.$apollo.mutate({
+          mutation: ASK_QUESTION,
+          variables: {
+            chat: {
+              message: message.data.text,
+              sessionId: localStorage.getItem('sessionId'),
+            }
+          }
+        })
+        .then(({ data }) => {
+          localStorage.setItem('sessionId', data.askQuestion.sessionId);
+          this.replyMessage(data.askQuestion.output.generic[0].text);
+        });
       }
     },
+    replyMessage (text = 'No Reply From Support') {
+      this.newMessagesCount = this.isChatOpen ? this.newMessagesCount : this.newMessagesCount + 1;
+      this.messageList = [ ...this.messageList, { author: 'hedron', type: 'text', data: { text } } ];
+    },
     onMessageWasSent (message) {
-      // called when the user sends a message
-      this.messageList = [ ...this.messageList, message ]
+      this.sendMessage(message);
     },
     openChat () {
       // called when the user clicks on the fab button to open the chat
@@ -120,7 +135,7 @@ export default {
       // leverage pagination for loading another page of messages
   	},
     handleOnType () {
-      console.log('Emit typing event')
+      // console.log('Emit typing event')
     },
     editMessage(message){
       const m = this.messageList.find(m=>m.id === message.id);

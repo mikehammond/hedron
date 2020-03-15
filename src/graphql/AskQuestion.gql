@@ -1,0 +1,15 @@
+mutation AskQuestion(
+  $chat: ChatInput!
+) {
+  askQuestion(
+    chat: $chat
+  ) {
+    sessionId
+    output {
+      generic {
+        response_type
+        text
+      }
+    }
+  }
+}
