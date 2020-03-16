@@ -3,7 +3,7 @@
     <v-container>
       <v-autocomplete
         v-model="select"
-        :loading="loading"
+        :loading="$apollo.queries.searchProducts.loading"
         :items="items"
         :search-input.sync="search"
         cache-items
@@ -13,6 +13,7 @@
         hide-details
         label="Let Hedron Help You Find What You Are Looking For"
         solo-inverted
+        @update:search-input="performSearch"
       ></v-autocomplete>
     </v-container>
     <v-container
@@ -30,7 +31,10 @@
                     label="Product Type"
                     solo
                   ></v-select>
-                  <v-btn dark color="teal">Run Query</v-btn>
+                  <v-btn
+                    dark
+                    @click="runQuery"
+                    color="teal">Run Query</v-btn>
                 </v-container>
               </v-card>
             </v-col>
@@ -73,11 +77,6 @@
         </v-col>
       </v-row>
     </v-container>
-
-    <loading
-      v-else
-      :active="true" 
-      :is-full-page="true"></loading>
   </v-content>
 </template>
 
@@ -93,7 +92,6 @@ export default {
 
   data: () => ({
     productTypes: ['CRM', 'Accounting'],
-    loading: false,
     search: null,
     select: null,
     items: [],
@@ -106,16 +104,15 @@ export default {
   },
 
   methods: {
-    validate() {
-      if (this.$refs.form.validate()) {
-        this.snackbar = true
-      }
+    runQuery(e) {
+      e.preventDefault();
+      console.log(this.search);
     },
-    reset() {
-      this.$refs.form.reset()
-    },
-    resetValidation() {
-      this.$refs.form.resetValidation()
+
+    performSearch() {
+      this.$apollo.queries.searchProducts.refetch({
+        query: this.search
+      });
     }
   }
 }
