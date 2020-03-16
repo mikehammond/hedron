@@ -16,31 +16,7 @@
             contain
           />
           <v-card style="border-radius: 20px; margin-top: 2rem">
-            <div style="padding: 4%;">
-              <h3>The Database for Modern Applications</h3><br>
-              <p>MongoDB is a general purpose, document-based, distributed database built for modern application developers and for the cloud era. No database makes you more productive.</p><br>
-              <h3>As a programmer, you think in objects. Now your database does too.</h3>
-              <p>MongoDB is a document database, which means it stores data in JSON-like documents. We believe this is the most natural way to think about data, and is much more expressive and powerful than the traditional row/column model.</p><br>
-              <iframe width="89%" height="340" style="margin-left: 5%;" src="https://www.youtube.com/watch?v=ny2rBxwvxBY"></iframe><br><br><br><br>
-              <h3>Rich JSON Documents</h3>
-              <ul>
-                <li>The most natural and productive way to work with data.</li>
-                <li>Supports arrays and nested objects as values.</li>
-                <li>Allows for flexible and dynamic schemas.</li>
-              </ul><br>
-              <h3>Powerful query language</h3>
-              <ul>
-                <li>Rich and expressive query language that allows you to filter and sort by any field, no matter how nested it may be within a document.</li>
-                <li>Support for aggregations and other modern use-cases such as geo-based search, graph search, and text search.</li>
-                <li>Queries are themselves JSON, and thus easily composable. No more concatenating strings to dynamically generate SQL queries.</li>
-              </ul><br>
-              <h3>All the power of a relational database, and more...</h3>
-              <ul>
-                <li>Full ACID transactions.</li>
-                <li>Support for joins in queries.</li>
-                <li>Two types of relationships instead of one: reference and embedded.</li>
-              </ul><br>
-            </div>
+            <div style="padding: 4%;" v-html="getProductByName.description"></div>
           </v-card>
         </v-col>
 
@@ -269,6 +245,7 @@
         </v-col>
       </v-row>
 
+      <br><br>
       <v-row justify="center">
         <v-dialog v-model="dialog" persistent max-width="600px">
           <template v-slot:activator="{ on }">
@@ -281,31 +258,31 @@
             <v-card-text>
               <v-container>
                 <v-row>
-                  <v-col cols="12" sm="6" md="4">
-                    <p-field v-model="firstName" label="First Name*" required></p-field>
+                  <v-col cols="12" sm="6" md="6">
+                    <v-text-field v-model="firstName" label="First Name*" required></v-text-field>
                   </v-col>
-                  <v-col cols="12" sm="6" md="4">
-                    <p-field
+                  <v-col cols="12" sm="6" md="6">
+                    <v-text-field
                       label="Last Name*"
                       persistent-hint
                       required
                       v-model="lastName"
-                    ></p-field>
+                    ></v-text-field>
                   </v-col>
                   <v-col cols="12" sm="6" md="6">
-                    <p-field v-model="email" label="Email*" required></p-field>
+                    <v-text-field v-model="email" label="Email*" required></v-text-field>
                   </v-col>
                   <v-col cols="12" sm="6" md="6">
-                    <p-field v-model="phoneNumber" label="Phone Number*" required></p-field>
+                    <v-text-field v-model="phoneNumber" label="Phone Number*" required></v-text-field>
                   </v-col>
                   <v-col cols="12" sm="6" md="6">
-                    <p-field v-model="company" label="Company*" required></p-field>
+                    <v-text-field v-model="company" label="Company*" required></v-text-field>
                   </v-col>
                   <v-col cols="12" sm="6" md="6">
-                    <p-field v-model="position" label="Your Position*" hint="Eg. Marketing Manager" required></p-field>
+                    <v-text-field v-model="position" label="Your Position*" hint="Eg. Marketing Manager" required></v-text-field>
                   </v-col>
                   <v-col cols="12" sm="6" md="6">
-                    <p-field v-model="website" label="Link to website"></p-field>
+                    <v-text-field v-model="website" label="Link to website"></v-text-field>
                   </v-col>
                   <v-col cols="12" sm="6" md="6">
                     <v-select
@@ -314,9 +291,9 @@
                       required
                       v-model="numberOfEmployees"
                     ></v-select>
-                    <v-col cols="12">
-                      <p-field v-model="message" label="Message"></p-field>
-                    </v-col>
+                  </v-col>
+                  <v-col cols="12">
+                    <v-text-field v-model="message" label="Message"></v-text-field>
                   </v-col>
                 </v-row>
               </v-container>
@@ -330,9 +307,9 @@
           </v-card>
         </v-dialog>
       </v-row>
-      <v-content :elevation="24">
+      <v-row>
         <hedron-chat />
-      </v-content>
+      </v-row>
     </v-container>
 
     <loading
