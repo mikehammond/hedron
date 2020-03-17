@@ -67,11 +67,11 @@ export default {
       showTypingIndicator: '', // when set to a value matching the participant.id it shows the typing indicator for the specific user
       colors: {
         header: {
-          bg: '#4e8cff',
+          bg: '#237586',
           text: '#ffffff'
         },
         launcher: {
-          bg: '#4e8cff'
+          bg: '#237586'
         },
         messageList: {
           bg: '#ffffff'
@@ -123,12 +123,29 @@ export default {
     },
     openChat () {
       // called when the user clicks on the fab button to open the chat
-      this.isChatOpen = true
-      this.newMessagesCount = 0
+      this.isChatOpen = true;
+      this.newMessagesCount = 0;
+      this.messageList = [];
+
+      this.$apollo.mutate({
+          mutation: ASK_QUESTION,
+          variables: {
+            chat: {
+              message: 'hello',
+              sessionId: localStorage.getItem('sessionId'),
+            }
+          }
+        })
+        .then(({ data }) => {
+          localStorage.setItem('sessionId', data.askQuestion.sessionId);
+          this.replyMessage(data.askQuestion.output.generic[0].text);
+        });
     },
     closeChat () {
       // called when the user clicks on the botton to close the chat
-      this.isChatOpen = false
+      this.isChatOpen = false;
+      this.newMessagesCount = 0;
+      this.messageList = [];
     },
     handleScrollToTop () {
       // called when the user scrolls message list to top
