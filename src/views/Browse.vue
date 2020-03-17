@@ -56,13 +56,8 @@
                 <v-card-subtitle class="pb-0">
                   {{ product.summary }}
                 </v-card-subtitle>
-
-                <v-card-text class="text--primary">
-                  <div><strong>Free Plan | Starting at $10/month</strong></div>
-                  <div>Manage your contacts, leads and prospects with ease</div>
-                </v-card-text>
                 <v-card-actions>
-                  <router-link :to="`/products/${product.name}`">
+                  <router-link :to="`/products/${product.slug}`">
                     <v-btn color="orange" text>
                       Read More
                     </v-btn>

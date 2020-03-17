@@ -16,7 +16,7 @@
             contain
           />
           <v-card style="border-radius: 20px; margin-top: 2rem">
-            <div style="padding: 4%;" v-html="getProductByName.description"></div>
+            <div class="hedron-description" style="padding: 4%;" v-html="getProductByName.description"></div>
           </v-card>
         </v-col>
 
