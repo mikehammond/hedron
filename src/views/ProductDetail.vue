@@ -1,22 +1,22 @@
 <template>
   <v-content>
     <v-container
-      v-if="getProductByName"
+      v-if="productByName"
       style="font-family: 'Poppins', sans-serif;">
       <v-row style="font-size: 24px; color: rgb(35,117,134)">
-        <h1>{{ getProductByName.name }}</h1>
+        <h1>{{ productByName.name }}</h1>
       </v-row>
       <v-row>
         <!-- Main Content -->
         <v-col cols="7">
           <img
-            :src="getProductByName.featured.url"
+            :src="productByName.featured.url"
             width="100%"
             style="border-radius: 20px"
             contain
           />
           <v-card style="border-radius: 20px; margin-top: 2rem">
-            <div class="hedron-description" style="padding: 4%;" v-html="getProductByName.description"></div>
+            <div class="hedron-description" style="padding: 4%;" v-html="productByName.description"></div>
           </v-card>
         </v-col>
 
@@ -25,13 +25,13 @@
           <!-- Product Summary -->
           <v-card style="-webkit-box-shadow: -3px 4px 45px 15px rgba(209,207,209,1); -moz-box-shadow: -3px 4px 45px 15px rgba(209,207,209,1); box-shadow: -3px 4px 45px 15px rgba(209,207,209,1);">
             <v-card-title style="font-size: 22px; background: linear-gradient(270deg, rgba(35,117,134,1) 13%, rgba(36,132,152,1) 46%, rgba(93,188,210,1) 91%); width: 100%; color: white;">Summary</v-card-title>
-            <v-card-text>{{ getProductByName.summary }}</v-card-text>
+            <v-card-text>{{ productByName.summary }}</v-card-text>
           </v-card>
         <!-- Value Proposition -->
           <v-card style="-webkit-box-shadow: -3px 4px 45px 15px rgba(209,207,209,1); -moz-box-shadow: -3px 4px 45px 15px rgba(209,207,209,1); box-shadow: -3px 4px 45px 15px rgba(209,207,209,1); margin-top: 2rem;">
             <v-card-title style="font-size: 22px; background: linear-gradient(90deg, rgba(35,117,134,1) 13%, rgba(36,132,152,1) 46%, rgba(93,188,210,1) 91%); width: 100%; color: white;">Value Proposition</v-card-title>
             <v-list-item
-              v-for="value in getProductByName.values"
+              v-for="value in productByName.values"
               :key="value.name"
               two-line>
               <i class="material-icons" style="margin-right: 5%; color: rgb(35,117,134);">done_outline</i>
@@ -45,7 +45,7 @@
           <v-card style="-webkit-box-shadow: -3px 4px 45px 15px rgba(209,207,209,1); -moz-box-shadow: -3px 4px 45px 15px rgba(209,207,209,1); box-shadow: -3px 4px 45px 15px rgba(209,207,209,1); margin-top: 2rem;">
             <v-card-title style="font-size: 22px; background: linear-gradient(270deg, rgba(35,117,134,1) 13%, rgba(36,132,152,1) 46%, rgba(93,188,210,1) 91%); width: 100%; color: white;">Features</v-card-title>
             <v-list-item
-              v-for="feature in getProductByName.features"
+              v-for="feature in productByName.features"
               :key="feature.name"
               two-line>
               <v-list-item-content>
@@ -69,7 +69,7 @@
                   :icons-and-text="icons"
                 >
                     <v-tab
-                      v-for="(plan, index) in getProductByName.plans"
+                      v-for="(plan, index) in productByName.plans"
                       :key="index"
                       :href="`#tab-${index + 1}`">
                       {{ plan.name }}
@@ -77,7 +77,7 @@
                     </v-tab>
 
                     <v-tab-item
-                      v-for="(plan, index) in getProductByName.plans"
+                      v-for="(plan, index) in productByName.plans"
                       :key="index"
                       :value="`tab-${index + 1}`">
                       <v-card flat tile style="text-align: center; margin: auto;"><br>
@@ -320,8 +320,8 @@
 </template>
 
 <script>
-  import GET_PRODUCT_BY_NAME from "../graphql/GetProductByName.gql";
-  import MAKE_DEMO_REQUEST from "../graphql/MakeDemoRequest.gql";
+  import PRODUCT_BY_NAME from "../graphql/ProductByName.gql";
+  import ADD_DEMO_REQUEST from "../graphql/AddDemoRequest.gql";
 
   import Loading from 'vue-loading-overlay';
   import Chat from '../components/Chat';
@@ -361,12 +361,12 @@
         position, website, numberOfEmployees, message } = this;
 
         this.$apollo.mutate({
-          mutation: MAKE_DEMO_REQUEST,
+          mutation: ADD_DEMO_REQUEST,
           variables: {
             demo: {
               sender: `${firstName} ${lastName}`,
-              receiver: this.getProductByName.userId,
-              productId: this.getProductByName._id,
+              receiver: this.productByName.userId,
+              productId: this.productByName._id,
               firstName,
               lastName,
               email,
@@ -385,8 +385,8 @@
     },
 
     apollo: {
-      getProductByName: {
-        query: GET_PRODUCT_BY_NAME,
+      productByName: {
+        query: PRODUCT_BY_NAME,
         variables () {
           return {
             productName: this.$route.params.name

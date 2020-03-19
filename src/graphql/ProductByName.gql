@@ -1,7 +1,7 @@
-query GetProductByName(
+query ProductByName(
     $productName: String!
   ) {
-    getProductByName(productName: $productName) {
+    productByName(productName: $productName) {
       _id
       userId
       ibmDiscoveryDocumentId
