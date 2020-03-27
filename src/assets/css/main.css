@@ -5,3 +5,19 @@
 .hedron-description img {
   width: 100%;
 }
+
+a {
+  text-decoration: none;
+}
+
+.truncate {
+  width: 250px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card-body-truncate {
+  height: 100px;
+  overflow: auto;
+}

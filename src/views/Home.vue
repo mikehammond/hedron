@@ -4,7 +4,10 @@
       <v-col cols="5" style="margin-top: 9%; display: flex; flex-wrap: wrap; margin-left: 4%;">
         <h1>Find Software to Boost your Productivity</h1>
         <h3>Browse hundreds of verified, secure and reliable online software that fit your business needs</h3>
-        <v-btn class="btn" style="color: white;">Browse All</v-btn><br><br>
+        <router-link style="width: 100%;" :to="`/browse`">
+          <v-btn class="btn" style="color: white;">Browse All</v-btn>
+        </router-link>
+        <br><br>
       </v-col>
       <v-col cols="6" style="margin-top: 8%; margin-bottom: 7%; display: flex;">
         <!-- HR Cards -->
@@ -153,127 +156,48 @@
         <v-col class="value" cols="4">
           <i class="material-icons value-icons">vpn_lock</i>
           <h3>Secure Products</h3>
-          <p>description of our value propositions</p>
+          <p>All our products undergo rigorous security checks</p>
         </v-col>
         <v-col class="value" cols="4">
           <i class="material-icons value-icons">rate_review</i>
           <h3>Real Reviews</h3>
-          <p>description of our value propositions</p>
+          <p>Access to reviews by real humans</p>
         </v-col>
         <v-col class="value" cols="4">
           <i class="material-icons value-icons">contact_support</i>
           <h3>24/7 Support</h3>
-          <p>description of our value propositions</p>
+          <p>Our support system is just a ping away</p>
         </v-col>
       </v-row>
     </v-container>
-    <v-container style="margin-top: 5%;">
+    <v-container v-if="searchProducts" style="margin-top: 5%;">
       <div style="background: linear-gradient(90deg, rgb(35, 117, 134) 13%, rgb(36, 132, 152) 46%, rgb(93, 188, 210) 91%); height: 100px; border-bottom-left-radius: 10px;">
         <div style="text-align: center; padding-bottom: 2%; margin-left: 2%; background: white; border-bottom-left-radius: 10px;">
           <h1>Featured Products</h1>
           <h3 style="color: rgba(10,10,10,0.5);">Find top products based on your needs. Find them by name, reviews, functionalities, price, support model and much more.</h3>
         </div>
       </div>
-      <v-row style="justify-content: space-between; width: 100%; text-align: center; margin-left: 0.5%;">
-        <!-- Card 1 -->
-        <v-card class="product" style="width: 30%; margin-top: 5%;">
-          <div style="height: 217px; width: 100%;">
-            <img src="../assets/images/home1.jpg" class="white--text align-end" height="100%;" style=" min-width: 100%; max-width: 100%;"/>
-          </div>
-          <div style="-webkit-box-shadow: 0px -32px 39px 1px rgba(186,184,186,0.5);
-          -moz-box-shadow: 0px -32px 39px 1px rgba(186,184,186,0.5);
-          box-shadow: 0px -32px 39px 1px rgba(186,184,186,0.5); position: relative;">
-            <v-card-title>Product Name</v-card-title>
-            <h4 style="padding: 5%;">Short description of the product. Clear and concise, preferably max 2 sentences</h4><br><br>
-            <div style="display: flex; width: 100%; flex-direction: row; position: absolute; bottom: 0;">
-              <v-btn class="btn" style="color: white; width: 50%;">Read More</v-btn>
-              <v-btn class="btn" style="color: white; width: 50%;">Sign Up</v-btn>
-            </div>
-          </div>
-        </v-card>
-        <!-- Card 2 -->
-        <v-card class="product" style="width: 30%; margin-top: 5%;">
+      <v-row style="justify-content: space-around; width: 100%; text-align: center; margin-left: 0.5%;">
+        <v-card
+          class="product"
+          style="width: 30%; margin-top: 5%;"
+          v-for="product in searchProducts.slice(0, 4)"
+          :key="product._id"
+        >
           <div style="height: 217px;">
-            <img src="../assets/images/home2.jpg" class="white--text align-end" height="100%;" style="min-width: 100%; max-width: 100%;" cover/>
+            <img :src="product.featured.url" class="white--text align-end" height="100%;" style="min-width: 100%; max-width: 100%;"/>
           </div>
           <div style="-webkit-box-shadow: 0px -32px 39px 1px rgba(186,184,186,0.5);
           -moz-box-shadow: 0px -32px 39px 1px rgba(186,184,186,0.5);
           box-shadow: 0px -32px 39px 1px rgba(186,184,186,0.5); position: relative;">
-            <v-card-title>Product Name.</v-card-title>
-            <h4 style="padding: 5%;">Short description of the product. Clear and concise, preferably max 2 sentences</h4><br><br>
+            <v-card-title>{{ product.name }}</v-card-title>
+            <h4 class="card-body-truncate" style="margin: 0 1rem">{{ product.summary }}</h4><br><br>
             <div style="display: flex; width: 100%; flex-direction: row; position: absolute; bottom: 0;">
-              <v-btn class="btn" style="color: white; width: 50%;">Read More</v-btn>
-              <v-btn class="btn" style="color: white; width: 50%;">Sign Up</v-btn>
+              <router-link style="width: 100%;" :to="`/products/${product.slug}`">
+                <v-btn class="btn" style="color: white; width: 100%;">Read More</v-btn>
+              </router-link>
             </div>
           </div>
-        </v-card>
-        <!-- Card 3 -->
-        <v-card class="product" style="width: 30%; margin-top: 5%;">
-          <div style="height: 217px;">
-            <img src="../assets/images/home3.png" class="white--text align-end" height="100%;" style="min-width: 100%; max-width: 100%;"/>
-          </div>
-          <div style="-webkit-box-shadow: 0px -32px 39px 1px rgba(186,184,186,0.5);
-          -moz-box-shadow: 0px -32px 39px 1px rgba(186,184,186,0.5);
-          box-shadow: 0px -32px 39px 1px rgba(186,184,186,0.5); position: relative;">
-            <v-card-title>Product Name</v-card-title>
-            <h4 style="padding: 4%;">Short description of the product. Clear and concise, preferably max 2 sentences</h4><br><br>
-            <div style="display: flex; width: 100%; flex-direction: row; position: absolute; bottom: 0;">
-              <v-btn class="btn" style="color: white; width: 50%;">Read More</v-btn>
-              <v-btn class="btn" style="color: white; width: 50%;">Sign Up</v-btn>
-            </div>
-          </div>
-          <br>
-        </v-card>
-        <!-- Card 4 -->
-        <v-card class="product" style="width: 30%; margin-top: 5%;">
-          <div style="height: 217px;">
-            <img src="../assets/images/home4.jpg" class="white--text align-end" height="100%;" style="min-width: 100%; max-width: 100%;"/>
-          </div>
-          <div style="-webkit-box-shadow: 0px -32px 39px 1px rgba(186,184,186,0.5);
-          -moz-box-shadow: 0px -32px 39px 1px rgba(186,184,186,0.5);
-          box-shadow: 0px -32px 39px 1px rgba(186,184,186,0.5); position: relative;">
-            <v-card-title>Product Name</v-card-title>
-            <h4 style="padding: 5%;">Short description of the product. Clear and concise, preferably max 2 sentences</h4><br><br>
-            <div style="display: flex; width: 100%; flex-direction: row; position: absolute; bottom: 0;">
-              <v-btn class="btn" style="color: white; width: 50%;">Read More</v-btn>
-              <v-btn class="btn" style="color: white; width: 50%;">Sign Up</v-btn>
-            </div>
-          </div>
-          <br>
-        </v-card>
-        <!-- Card 5 -->
-        <v-card class="product" style="width: 30%; margin-top: 5%;">
-          <div style="height: 217px;">
-            <img src="../assets/images/home5.jpg" class="white--text align-end" height="100%;" style="min-width: 100%; max-width: 100%;"/>
-          </div>
-          <div style="-webkit-box-shadow: 0px -32px 39px 1px rgba(186,184,186,0.5);
-          -moz-box-shadow: 0px -32px 39px 1px rgba(186,184,186,0.5);
-          box-shadow: 0px -32px 39px 1px rgba(186,184,186,0.5); position: relative;">
-            <v-card-title>Product Name</v-card-title>
-            <h4 style="padding: 5%;">Short description of the product. Clear and concise, preferably max 2 sentences</h4><br><br>
-            <div style="display: flex; width: 100%; flex-direction: row; position: absolute; bottom: 0;">
-              <v-btn class="btn" style="color: white; width: 50%;">Read More</v-btn>
-              <v-btn class="btn" style="color: white; width: 50%;">Sign Up</v-btn>
-            </div>
-          </div>
-          <br>
-        </v-card>
-        <!-- Card 6 -->
-        <v-card class="product" style="width: 30%; margin-top: 5%;">
-          <div style="height: 217px;">
-            <img src="../assets/images/hom6.jpg" class="white--text align-end" height="100%;" style="min-width: 100%; max-width: 100%;"/>
-          </div>
-          <div style="-webkit-box-shadow: 0px -32px 39px 1px rgba(186,184,186,0.5);
-          -moz-box-shadow: 0px -32px 39px 1px rgba(186,184,186,0.5);
-          box-shadow: 0px -32px 39px 1px rgba(186,184,186,0.5); position: relative;">
-            <v-card-title>Product Name</v-card-title>
-            <h4 style="padding: 5%;">Short description of the product. Clear and concise, preferably max 2 sentences</h4><br><br>
-            <div style="display: flex; width: 100%; flex-direction: row; position: absolute; bottom: 0;">
-              <v-btn class="btn" style="color: white; width: 50%;">Read More</v-btn>
-              <v-btn class="btn" style="color: white; width: 50%;">Sign Up</v-btn>
-            </div>
-          </div>
-          <br>
         </v-card>
       </v-row>
     </v-container><br><br>
@@ -383,44 +307,13 @@ h4 {
 </style>
 
 <script>
-export default {
-  data() {
-    return {
-      clipped: false,
-      drawer: false,
-      fixed: false,
-      items: [
-        {
-          icon: 'mdi-apps',
-          title: 'Welcome',
-          to: '/'
-        },
-        {
-          icon: 'mdi-chart-bubble',
-          title: 'Inspire',
-          to: '/inspire'
-        },
-        {
-          icon: 'mdi-chart-bubble',
-          title: 'Browse Products',
-          to: '/browse'
-        },
-        {
-          icon: 'mdi-chart-bubble',
-          title: 'Submit Product',
-          to: '/submit'
-        },
-        {
-          icon: 'mdi-chart-bubble',
-          title: 'Contact',
-          to: '/contact'
-        }
-      ],
-      miniVariant: false,
-      right: true,
-      rightDrawer: false,
-      title: 'Vuetify.js'
-    }
+  import SEARCH_PRODUCTS from "../graphql/SearchProducts.gql";
+
+  export default {
+    apollo: {
+      searchProducts: {
+        query: SEARCH_PRODUCTS,
+      }
+    },
   }
-}
 </script>

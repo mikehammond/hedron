@@ -17,10 +17,9 @@
       ></v-autocomplete>
     </v-container>
     <v-container
-      v-if="searchProducts"
-      fluid>
+      v-if="searchProducts">
       <v-row>
-        <v-col cols="2">
+        <!-- <v-col cols="2">
           <v-row>
             <v-col cols="12">
               <v-card>
@@ -39,8 +38,8 @@
               </v-card>
             </v-col>
           </v-row>
-        </v-col>
-        <v-col cols="10">
+        </v-col> -->
+        <v-col cols="12">
           <v-row>
             <v-col
               cols="4"
@@ -53,7 +52,7 @@
                   :src="product.featured.url"
                 />
                 <v-card-title>{{ product.name }}</v-card-title>
-                <v-card-subtitle class="pb-0">
+                <v-card-subtitle class="mb-1 mt-1 card-body-truncate">
                   {{ product.summary }}
                 </v-card-subtitle>
                 <v-card-actions>
