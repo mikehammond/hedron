@@ -9,52 +9,74 @@
       </v-card-title>
       <v-card-text>
         <v-container>
-          <v-row>
-            <v-col cols="12" sm="6" md="6">
-              <v-text-field v-model="firstName" label="First Name*" required></v-text-field>
-            </v-col>
-            <v-col cols="12" sm="6" md="6">
-              <v-text-field label="Last Name*" persistent-hint required v-model="lastName"></v-text-field>
-            </v-col>
-            <v-col cols="12" sm="6" md="6">
-              <v-text-field v-model="email" label="Email*" required></v-text-field>
-            </v-col>
-            <v-col cols="12" sm="6" md="6">
-              <v-text-field v-model="phoneNumber" label="Phone Number*" required></v-text-field>
-            </v-col>
-            <v-col cols="12" sm="6" md="6">
-              <v-text-field v-model="company" label="Company*" required></v-text-field>
-            </v-col>
-            <v-col cols="12" sm="6" md="6">
-              <v-text-field
-                v-model="position"
-                label="Your Position*"
-                hint="Eg. Marketing Manager"
-                required
-              ></v-text-field>
-            </v-col>
-            <v-col cols="12" sm="6" md="6">
-              <v-text-field v-model="website" label="Link to website"></v-text-field>
-            </v-col>
-            <v-col cols="12" sm="6" md="6">
-              <v-select
-                :items="['5 - 15', '16 - 30', '31 - 55', '56+']"
-                label="Number of Employees*"
-                required
-                v-model="numberOfEmployees"
-              ></v-select>
-            </v-col>
-            <v-col cols="12">
-              <v-text-field v-model="message" label="Message"></v-text-field>
-            </v-col>
-          </v-row>
+          <v-form
+            v-model="valid"
+          >
+            <v-row>
+              <v-col cols="12" sm="6" md="6">
+                <v-text-field
+                  v-model="firstName"
+                  label="First Name"
+                  :rules="generalRules"></v-text-field>
+              </v-col>
+              <v-col cols="12" sm="6" md="6">
+                <v-text-field
+                  label="Last Name"
+                  v-model="lastName"
+                  :rules="generalRules"></v-text-field>
+              </v-col>
+              <v-col cols="12" sm="6" md="6">
+                <v-text-field
+                  v-model="email"
+                  label="Email"
+                  :rules="emailRules"></v-text-field>
+              </v-col>
+              <v-col cols="12" sm="6" md="6">
+                <v-text-field
+                  v-model="phoneNumber"
+                  label="Phone Number"
+                  :rules="generalRules"></v-text-field>
+              </v-col>
+              <v-col cols="12" sm="6" md="6">
+                <v-text-field
+                  v-model="company"
+                  label="Company"
+                  :rules="generalRules"></v-text-field>
+              </v-col>
+              <v-col cols="12" sm="6" md="6">
+                <v-text-field
+                  v-model="position"
+                  label="Your Position*"
+                  :rules="generalRules"></v-text-field>
+              </v-col>
+              <v-col cols="12" sm="6" md="6">
+                <v-text-field
+                  v-model="website"
+                  label="Link to website"
+                  :rules="generalRules"></v-text-field>
+              </v-col>
+              <v-col cols="12" sm="6" md="6">
+                <v-select
+                  :items="['5 - 15', '16 - 30', '31 - 55', '56+']"
+                  label="Number of Employees*"
+                  required
+                  v-model="numberOfEmployees"
+                  :rules="generalRules"></v-select>
+              </v-col>
+              <v-col cols="12">
+                <v-text-field
+                  v-model="message"
+                  label="Message"
+                  :rules="generalRules"></v-text-field>
+              </v-col>
+            </v-row>
+          </v-form>
         </v-container>
-        <small>*indicates required field</small>
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
         <v-btn color="blue darken-1" text @click="dialog = false">Close</v-btn>
-        <v-btn type="submit" color="blue darken-1" text @click="makeDemoRequest">Submit</v-btn>
+        <v-btn :disabled="!valid" color="blue darken-1" text @click="makeDemoRequest">Submit</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -69,9 +91,17 @@
     data() {
       return {
         dialog: false,
+        valid: false,
+        generalRules: [
+          v => !!v || 'Input is required',
+        ],
+        emailRules: [
+          v => !!v || 'E-mail is required',
+          v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
+        ],
         firstName: "",
         lastName: "",
-        email: "",
+        email: this.$auth.user ? this.$auth.user.email : "",
         phoneNumber: "",
         company: "",
         position: "",

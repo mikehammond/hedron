@@ -8,8 +8,29 @@ import { createProvider } from './vue-apollo';
 
 import './assets/css/main.css';
 
-Vue.config.productionTip = false
+// Import the Auth0 configuration
+import { domain, clientId, audience } from "../auth_config.json";
+
+// Import the plugin here
+import { Auth0Plugin } from "./auth";
+
+// Install the authentication plugin here
+Vue.use(Auth0Plugin, {
+  domain,
+  clientId,
+  audience,
+  onRedirectCallback: appState => {
+    router.push(
+      appState && appState.targetUrl
+        ? appState.targetUrl
+        : window.location.pathname
+    );
+  }
+});
+
 Vue.use(Chat);
+
+Vue.config.productionTip = false
 
 new Vue({
   router,

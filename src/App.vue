@@ -46,7 +46,7 @@
             </ul>
           </v-col>
         </v-row>
-        <div style="text-align: center; padding-bottom: 2%;"><span>&copy; {{ new Date().getFullYear() }} hedron. All Right Reserved.</span></div>
+        <div style="text-align: center; padding-bottom: 2%;"><span>&copy; {{ new Date().getFullYear() }} hedron. All Right Reserved.</span>{{ getAuth }}</div>
       </v-container>
     </v-content>
   </v-app>
@@ -54,9 +54,23 @@
 
 <script>
   import 'vue-loading-overlay/dist/vue-loading.css';
+  import Vue from 'vue';
+  import { onLogin, onLogout } from './vue-apollo';
 
   export default {
-    
+    computed: {
+      getAuth() {
+        if (Vue.prototype.$auth.isAuthenticated) {
+          Vue.prototype.$auth.getTokenSilently().then(token => {
+            onLogin(token);
+          })
+          return ''
+        } else {
+          onLogout();
+          return ''
+        }
+      }
+    }
   }
 </script>
 
