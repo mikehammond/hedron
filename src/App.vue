@@ -1,15 +1,50 @@
 <template>
   <v-app id="sandbox" class="app">
-    <v-app-bar fixed app flat style="background: linear-gradient(90deg, rgb(35, 117, 134) 13%, rgb(36, 132, 152) 46%, rgb(93, 188, 210) 91%);">
+    <v-app-bar class="pl-12 pr-12" fixed app flat style="background: linear-gradient(90deg, rgb(35, 117, 134) 13%, rgb(36, 132, 152) 46%, rgb(93, 188, 210) 91%);">
       <router-link to="/">
         <v-toolbar-title style="color: #ffffff;">Hedron</v-toolbar-title>
       </router-link>
       <v-spacer />
-        <router-link style="color: #ffffff; text-decoration: none;" to="/browse">Browse</router-link>
-        <!-- <v-spacer /> -->
-        <span style="width: 2rem"></span>
-        <a style="color: #ffffff; text-decoration: none;" href="https://hedron-dashboard.now.sh/">Submit Product</a>
-        <v-spacer />
+      <router-link style="color: #ffffff; text-decoration: none;" to="/browse">Browse</router-link>
+      <span style="width: 2rem"></span>
+      <a style="color: #ffffff; text-decoration: none;" href="https://hedron-dashboard.now.sh/">Submit Product</a>
+      <v-spacer />
+      <v-menu
+        bottom
+        left
+        v-if="$auth.isAuthenticated"
+      >
+        <template v-slot:activator="{ on }">
+          <v-btn
+            icon
+            color="yellow"
+            v-on="on"
+          >
+            <v-avatar>
+              <img
+                :src="$auth.user.picture"
+                alt="John"
+              >
+            </v-avatar>
+          </v-btn>
+        </template>
+
+        <v-list>
+          <v-list-item
+            v-for="(item, i) in items"
+            :key="i"
+            @click="item.click"
+          >
+            <v-list-item-title>
+              {{ item.title }}
+            </v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-menu>
+      <v-btn
+        v-else
+        @click="login"
+      >Log In</v-btn>
     </v-app-bar>
     <v-content style="margin: 0;
     padding: 0; box-sizing: border-box; display: flex;" fluid>
@@ -58,6 +93,17 @@
   import { onLogin, onLogout } from './vue-apollo';
 
   export default {
+    data() {
+      return {
+        items: [
+          {
+            title: "Log Out",
+            click: this.logout
+          }
+        ]
+      }
+    },
+
     computed: {
       getAuth() {
         if (Vue.prototype.$auth.isAuthenticated) {
@@ -69,6 +115,16 @@
           onLogout();
           return ''
         }
+      }
+    },
+
+    methods: {
+      login() {
+        this.$auth.loginWithPopup();
+      },
+
+      logout() {
+        this.$auth.logout();
       }
     }
   }

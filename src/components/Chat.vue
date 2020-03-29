@@ -124,10 +124,11 @@ export default {
     openChat () {
       // called when the user clicks on the fab button to open the chat
       this.isChatOpen = true;
-      this.newMessagesCount = 0;
-      this.messageList = [];
+      // this.newMessagesCount = 0;
+      // this.messageList = [];
 
-      this.$apollo.mutate({
+      if (!this.messageList.length) {
+        this.$apollo.mutate({
           mutation: ASK_QUESTION,
           variables: {
             chat: {
@@ -140,12 +141,13 @@ export default {
           localStorage.setItem('sessionId', data.askQuestion.sessionId);
           this.replyMessage(data.askQuestion.output.generic[0].text);
         });
+      }
     },
     closeChat () {
       // called when the user clicks on the botton to close the chat
       this.isChatOpen = false;
-      this.newMessagesCount = 0;
-      this.messageList = [];
+      // this.newMessagesCount = 0;
+      // this.messageList = [];
     },
     handleScrollToTop () {
       // called when the user scrolls message list to top
