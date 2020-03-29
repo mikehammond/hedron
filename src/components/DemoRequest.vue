@@ -1,7 +1,7 @@
 <template>
   <v-dialog v-model="dialog" persistent max-width="600px">
     <template v-slot:activator="{ on }">
-      <v-btn color="primary" dark v-on="on">Request Demo</v-btn>
+      <v-btn class="btn" dark v-on="on">Request Demo</v-btn>
     </template>
     <v-card>
       <v-card-title>
@@ -150,3 +150,11 @@
     }
   };
 </script>
+
+<style scoped>
+  .btn {
+    background: rgb(120,115,204);
+    background: linear-gradient(90deg, rgb(35, 117, 134) 13%, rgb(36, 132, 152) 46%, rgb(93, 188, 210) 91%);
+    border-radius: 0;
+  }
+</style>

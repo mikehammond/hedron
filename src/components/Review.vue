@@ -1,8 +1,8 @@
 <template>
   <v-dialog v-model="dialog" persistent max-width="600px">
     <template v-slot:activator="{ on }">
-      <v-btn color="primary" v-if="$auth.isAuthenticated" dark v-on="on">Leave A Review</v-btn>
-      <v-btn color="primary" @click="login" v-else dark>Signup To Leave A Review</v-btn>
+      <v-btn class="btn" v-if="$auth.isAuthenticated" dark v-on="on">Leave A Review</v-btn>
+      <v-btn class="btn" @click="login" v-else dark>Signup To Leave A Review</v-btn>
     </template>
     <v-card>
       <v-card-title>
@@ -82,3 +82,11 @@
     }
   }
 </script>
+
+<style scoped>
+  .btn {
+    background: rgb(120,115,204);
+    background: linear-gradient(90deg, rgb(35, 117, 134) 13%, rgb(36, 132, 152) 46%, rgb(93, 188, 210) 91%);
+    border-radius: 0;
+  }
+</style>
