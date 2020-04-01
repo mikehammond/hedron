@@ -99,25 +99,27 @@
           <!-- Reviews -->
           <v-card style="display: flex; flex-wrap: wrap; height: auto; margin-top: 2rem;">
             <v-card-title style="font-size: 22px; background: linear-gradient(270deg, rgba(35,117,134,1) 13%, rgba(36,132,152,1) 46%, rgba(93,188,210,1) 91%);; width: 100%; color: white;">Reviews</v-card-title>
-            <hr style="width: 100%;">
-            <v-list-item
+            <div
               v-for="review in productByName.reviews"
               :key="review._id"
             >
-              <v-list-item-content style="display: flex;">
-                <img :src="review.picture" style="height: 70px; max-width: 20%; margin-right: 5%; border-radius: 50%;"/>
-                <div style="max-width: 70%;">
-                  <v-list-item-title>{{review.name}}</v-list-item-title>
-                  <v-rating
-                    background-color="orange lighten-3"
-                    color="orange"
-                    medium
-                    v-model="review.rating"
-                  ></v-rating>
-                </div>
-                <p style="font-size: 14px;"><br><i>{{review.review}}</i></p>
-              </v-list-item-content>
-            </v-list-item><hr style="width: 100%;">
+              <v-list-item>
+                <v-list-item-content style="display: flex;">
+                  <img :src="review.picture" style="max-width: 15%; margin-right: 5%; border-radius: 50%;"/>
+                  <div style="max-width: 70%;">
+                    <v-list-item-title>{{review.name}}</v-list-item-title>
+                    <v-rating
+                      background-color="orange lighten-3"
+                      color="orange"
+                      medium
+                      v-model="review.rating"
+                    ></v-rating>
+                  </div>
+                  <p style="font-size: 14px;"><br><i>{{review.review}}</i></p>
+                </v-list-item-content>
+              </v-list-item>
+              <v-divider />
+            </div>
           </v-card>
         </v-col>
       </v-row>
@@ -133,11 +135,10 @@
       <v-row>
         <!-- <hedron-chat /> -->
       </v-row>
-      <v-row>
-        <vue-disqus
-          shortname="hedron"
-          :identifier="productByName._id"></vue-disqus>
-      </v-row>
+      <vue-disqus
+        class="mt-12"
+        shortname="hedron"
+        :identifier="productByName._id"></vue-disqus>
     </v-container>
 
     <loading
