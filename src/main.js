@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Chat from 'vue-beautiful-chat';
+import VueDisqus from 'vue-disqus';
 import App from './App.vue'
 import './registerServiceWorker'
 import router from './router'
@@ -28,6 +29,7 @@ Vue.use(Auth0Plugin, {
   }
 });
 
+Vue.use(VueDisqus);
 Vue.use(Chat);
 
 Vue.config.productionTip = false

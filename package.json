@@ -1,5 +1,5 @@
 {
-  "name": "demo",
+  "name": "hedron",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -14,6 +14,7 @@
     "vue": "^2.6.11",
     "vue-apollo": "^3.0.0-beta.11",
     "vue-beautiful-chat": "^2.3.1",
+    "vue-disqus": "^3.0.5",
     "vue-loading-overlay": "^3.3.2",
     "vue-router": "^3.1.5",
     "vuetify": "^2.2.11"

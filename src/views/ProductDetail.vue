@@ -131,7 +131,12 @@
         </v-col>
       </v-row>
       <v-row>
-        <hedron-chat />
+        <!-- <hedron-chat /> -->
+      </v-row>
+      <v-row>
+        <vue-disqus
+          shortname="hedron"
+          :identifier="productByName._id"></vue-disqus>
       </v-row>
     </v-container>
 
