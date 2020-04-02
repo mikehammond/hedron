@@ -133,7 +133,7 @@
         </v-col>
       </v-row>
       <v-row>
-        <!-- <hedron-chat /> -->
+        <hedron-chat />
       </v-row>
       <vue-disqus
         class="mt-12"
